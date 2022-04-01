@@ -1,6 +1,12 @@
 {
   "version": 2,
   "name": "slapdash_commands",
+  "builds": [
+    {
+      "src": "dist/main.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
