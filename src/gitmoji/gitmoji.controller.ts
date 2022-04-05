@@ -12,7 +12,6 @@ export class GitmojiController {
     @Headers('copy-type') copyType: CopyType,
     @Query('selected') selected: string,
   ): CommandResponse {
-    console.log('getGitmoji : copyType / selected', copyType, selected);
     if (copyType) {
       if (selected) {
         return this.gitmojiService.getGitmojiCommands(selected);

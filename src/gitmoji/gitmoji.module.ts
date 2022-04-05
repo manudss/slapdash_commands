@@ -4,6 +4,6 @@ import { GitmojiService } from './gitmoji.service';
 
 @Module({
   controllers: [GitmojiController],
-  providers: [GitmojiService]
+  providers: [GitmojiService],
 })
 export class GitmojiModule {}

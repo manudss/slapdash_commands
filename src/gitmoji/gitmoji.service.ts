@@ -6,6 +6,7 @@ import {
   Config,
   List,
   ListOption,
+  Token,
 } from '@slapdash/command-response-types';
 import { CopyType, Gitmojis } from './gimojis.model';
 
@@ -74,13 +75,20 @@ export class GitmojiService {
   }
 
   getGitmojiCommands(selected: string): {
+    tokens: Token[];
     view: List;
   } {
     const gitmoji = this.getListOfEmojis().find(
       (gitmoji) => gitmoji.name === selected,
     );
-    console.log('getGitmojiCommands', selected, gitmoji);
     return {
+      tokens: [
+        {
+          paramName: 'selected',
+          label: gitmoji.name,
+          icon: gitmoji.emoji,
+        },
+      ],
       view: {
         type: 'list',
         options: this.getOptionsForGitmojiCommands(gitmoji),
