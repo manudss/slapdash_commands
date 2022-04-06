@@ -4,7 +4,7 @@ export interface Gitmojis {
   code: string;
   description: string;
   name: string;
-  semver?: any;
+  semver?: 'major' | 'minor' | 'patch' | null | string;
 }
 
 export type CopyType = 'emoji' | 'code' | 'description' | 'name' | 'entity';

@@ -36,9 +36,10 @@ export class GitmojiService {
               name: 'selected',
               value: gitmoji.name,
             },
-            group: gitmoji.semver ?? 'Other',
+            group: gitmoji.semver ?? 'other',
           };
         }),
+        groups: ['major', 'minor', 'patch', 'other'],
       },
     };
   }
