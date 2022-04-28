@@ -10,9 +10,8 @@ import { google } from 'googleapis';
 
 @Injectable()
 export class GoogleService {
-  customsearch = google.customsearch('v1');
+  customSearch = google.customsearch('v1');
 
-  constructor() {}
   // fetch google search  result and convert to CommandResult
   async search(
     query: string,
@@ -20,10 +19,11 @@ export class GoogleService {
     apiKey = null,
   ): Promise<CommandResponse> {
     try {
-      const res = await this.customsearch.cse.list({
+      const res = await this.customSearch.cse.list({
         cx: cx,
         q: query,
         auth: apiKey,
+        fields: 'items(title,link,snippet,displayLink)',
       });
       return {
         view: {
