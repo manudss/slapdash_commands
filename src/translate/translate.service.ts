@@ -141,10 +141,10 @@ export class TranslateService {
   async getFormOrGetConfigForm(
     query: string,
     apiKey: string,
-    displayForm: string,
+    displayResult: string,
   ): Promise<CommandResponse> {
-    if (!apiKey) {
-      return this.getConfigForm(apiKey, displayForm);
+    if (!apiKey || !displayResult) {
+      return this.getConfigForm(apiKey, displayResult);
     } else {
       return {
         view: {
