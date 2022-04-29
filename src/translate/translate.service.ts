@@ -26,52 +26,49 @@ export class TranslateService {
   ): { config: Config } {
     const fields: FormField[] = [];
 
-    if (!apiKey) {
-      fields.push({
-        type: 'text',
-        id: 'apiKey',
-        required: true,
-        label: 'Deepl API Key',
-        placeholder: 'Enter Deepl API Key',
-        helpText: `You need to provide your API authentication key for Deepl API as found in your [DeepL Pro Account)(https://www.deepl.com/pro-account/).. 
+    fields.push({
+      type: 'text',
+      id: 'apiKey',
+      required: true,
+      label: 'Deepl API Key',
+      placeholder: 'Enter Deepl API Key',
+      helpText: `You need to provide your API authentication key for Deepl API as found in your [DeepL Pro Account)(https://www.deepl.com/pro-account/).. 
                \n You can access the DeepL API with either a [DeepL API Free or DeepL API Pro plan](https://www.deepl.com/pro#developer) .
                 \n With the DeepL API Free plan, you can translate up to 500,000 characters per month for free.     
                 \nThis keys will not by store by this api, it will remain in slapdash and will be used for all requests.         
        `,
-      });
-    }
-    if (!displayResult) {
-      fields.push({
-        type: 'select',
-        id: 'displayResult',
-        required: true,
-        label: 'Which display to use for display translated result',
-        options: [
-          {
-            value: 'simple',
-            label: 'Simple return value (default)',
-          },
-          {
-            value: 'list',
-            label: 'Display result in list copy action',
-          },
-          {
-            value: 'paste',
-            label: 'Paste directly the translated message',
-          },
-          {
-            value: 'form',
-            label: 'Display in a new Form (beta)',
-          },
-        ],
-        helpText: `Define how to display the result of the translation. 
+    });
+
+    fields.push({
+      type: 'select',
+      id: 'displayResult',
+      required: true,
+      label: 'Which display to use for display translated result',
+      options: [
+        {
+          value: 'simple',
+          label: 'Simple return value (default)',
+        },
+        {
+          value: 'list',
+          label: 'Display result in list copy action',
+        },
+        {
+          value: 'paste',
+          label: 'Paste directly the translated message',
+        },
+        {
+          value: 'form',
+          label: 'Display in a new Form (beta)',
+        },
+      ],
+      helpText: `Define how to display the result of the translation. 
                \n * Simple return value (default) : return the translation in a simple string.
                \n * Display result in list copy action : return the translation in one list item with copy action. The text will be in one line.
                \n * Paste directly the translated message : paste the translation in your current application, or copy in the clipboard.        
                \n * Form (beta) : return the translation in a form, to translate again.          
        `,
-      });
-    }
+    });
     return {
       config: {
         form: {
