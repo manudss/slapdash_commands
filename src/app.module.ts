@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GitmojiModule } from './gitmoji/gitmoji.module';
 import { GoogleModule } from './google/google.module';
+import { TranslateModule } from './translate/translate.module';
 
 @Module({
-  imports: [GitmojiModule, GoogleModule],
+  imports: [GitmojiModule, GoogleModule, TranslateModule],
   controllers: [AppController],
   providers: [AppService],
 })
