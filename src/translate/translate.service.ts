@@ -56,13 +56,18 @@ export class TranslateService {
             label: 'Display result in list copy action',
           },
           {
+            value: 'paste',
+            label: 'Paste directly the translated message',
+          },
+          {
             value: 'form',
-            label: 'Form (beta)',
+            label: 'Display in a new Form (beta)',
           },
         ],
         helpText: `Define how to display the result of the translation. 
                \n * Simple return value (default) : return the translation in a simple string.
                \n * Display result in list copy action : return the translation in one list item with copy action. The text will be in one line.
+               \n * Paste directly the translated message : paste the translation in your current application, or copy in the clipboard.        
                \n * Form (beta) : return the translation in a form, to translate again.          
        `,
       });
@@ -202,6 +207,8 @@ export class TranslateService {
         return this.returnWithForm(textResult, body);
       case 'list':
         return this.returnInListView(textResult, body);
+      case 'paste':
+        return this.returnPasteInApplication(textResult);
       case 'view':
       default:
         return this.returnInSimpleView(textResult);
@@ -212,6 +219,17 @@ export class TranslateService {
     textResult: Translation,
   ): Promise<CommandResponse> {
     return Promise.resolve({ view: textResult.text });
+  }
+
+  private returnPasteInApplication(
+    textResult: Translation,
+  ): Promise<CommandResponse> {
+    return Promise.resolve({
+      action: {
+        type: 'paste',
+        value: textResult.text,
+      },
+    });
   }
 
   private returnWithForm(
